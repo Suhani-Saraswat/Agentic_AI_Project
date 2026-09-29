@@ -1,0 +1,45 @@
+# Node dependencies
+node_modules/
+**/node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Production builds
+dist/
+dist-ssr/
+build/
+*.local
+
+# Python virtual environment & cache
+venv/
+**/venv/
+env/
+**/env/
+__pycache__/
+**/__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Environment variables & secrets
+.env
+.env.*
+!.env.example
+
+# Temporary sandbox runs & uploaded datasets
+temp_sandbox/
+**/temp_sandbox/
+uploads/
+**/uploads/
+*.sqlite
+*.sqlite3
+*.db
+
+# IDE & OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

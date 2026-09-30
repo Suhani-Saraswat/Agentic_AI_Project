@@ -1,0 +1,179 @@
+{
+  "dataset_metadata": {
+    "file_name": "superstore_dirty.csv",
+    "total_rows": 10850,
+    "total_columns": 19,
+    "primary_key_candidate": ["Order_ID", "Product_ID"],
+    "data_domain": "E-Commerce Retail Sales & Orders (India Region)",
+    "data_quality_warnings": [
+      "Order_Date contains inconsistent date string formats and unparseable date strings.",
+      "Category contains inconsistent casing and typographical errors.",
+      "Sales, Customer_Name, and Postal_Code contain missing values (NaN).",
+      "Quantity contains negative integer values.",
+      "Sales and Profit contain extreme statistical outliers.",
+      "Dataset contains approximately 350 exact duplicate rows."
+    ]
+  },
+  "schema": [
+    {
+      "column_name": "Order_ID",
+      "data_type": "string",
+      "nullable": false,
+      "missing_percentage": 0.0,
+      "example_values": ["IN-2024-100042", "IN-2024-101892"],
+      "description": "Unique transaction or order identifier."
+    },
+    {
+      "column_name": "Order_Date",
+      "data_type": "string (mixed datetime)",
+      "nullable": false,
+      "missing_percentage": 0.0,
+      "example_values": ["2024-03-15", "15/03/2024", "03-15-2024", "2024-02-31"],
+      "description": "Date order was placed. Requires datetime parsing with error coercion."
+    },
+    {
+      "column_name": "Ship_Date",
+      "data_type": "string (YYYY-MM-DD)",
+      "nullable": false,
+      "missing_percentage": 0.0,
+      "example_values": ["2024-03-18", "2024-03-20"],
+      "description": "Date order was shipped."
+    },
+    {
+      "column_name": "Ship_Mode",
+      "data_type": "string (categorical)",
+      "nullable": false,
+      "missing_percentage": 0.0,
+      "unique_values": ["Standard Class", "Second Class", "First Class", "Same Day"],
+      "description": "Shipping class selected for the order."
+    },
+    {
+      "column_name": "Customer_ID",
+      "data_type": "string",
+      "nullable": false,
+      "missing_percentage": 0.0,
+      "example_values": ["CG-104", "CG-892"],
+      "description": "Unique customer account identifier."
+    },
+    {
+      "column_name": "Customer_Name",
+      "data_type": "string",
+      "nullable": true,
+      "missing_percentage": 3.0,
+      "example_values": ["Aarav Sharma", "Priya Patel", null],
+      "description": "Full name of the customer."
+    },
+    {
+      "column_name": "Segment",
+      "data_type": "string (categorical)",
+      "nullable": false,
+      "missing_percentage": 0.0,
+      "unique_values": ["Consumer", "Corporate", "Home Office"],
+      "description": "Customer market segment."
+    },
+    {
+      "column_name": "City",
+      "data_type": "string",
+      "nullable": false,
+      "missing_percentage": 0.0,
+      "example_values": ["Mumbai", "Delhi", "Bengaluru", "Kolkata"],
+      "description": "City where the customer is located."
+    },
+    {
+      "column_name": "State",
+      "data_type": "string",
+      "nullable": false,
+      "missing_percentage": 0.0,
+      "example_values": ["Maharashtra", "Delhi", "Karnataka", "West Bengal"],
+      "description": "State where the customer is located."
+    },
+    {
+      "column_name": "Postal_Code",
+      "data_type": "float64",
+      "nullable": true,
+      "missing_percentage": 5.0,
+      "example_values": [400001.0, 110001.0, null],
+      "description": "Postal pincode for delivery location."
+    },
+    {
+      "column_name": "Region",
+      "data_type": "string (categorical)",
+      "nullable": false,
+      "missing_percentage": 0.0,
+      "unique_values": ["West", "North", "South", "East"],
+      "description": "Geographic sales region."
+    },
+    {
+      "column_name": "Product_ID",
+      "data_type": "string",
+      "nullable": false,
+      "missing_percentage": 0.0,
+      "example_values": ["FUR-BOO-1042", "TEC-PHO-8921"],
+      "description": "Stock Keeping Unit (SKU) identifier."
+    },
+    {
+      "column_name": "Category",
+      "data_type": "string (dirty categorical)",
+      "nullable": false,
+      "missing_percentage": 0.0,
+      "example_values": ["Furniture", "furniture", "FURNITURE", "Office Supplies", "office supplies", "Tech"],
+      "description": "High-level product category. Requires string trimming and case normalization."
+    },
+    {
+      "column_name": "Sub_Category",
+      "data_type": "string (categorical)",
+      "nullable": false,
+      "missing_percentage": 0.0,
+      "example_values": ["Bookcases", "Chairs", "Appliances", "Phones"],
+      "description": "Detailed product sub-category."
+    },
+    {
+      "column_name": "Product_Name",
+      "data_type": "string",
+      "nullable": false,
+      "missing_percentage": 0.0,
+      "example_values": ["Chairs Item 12", "Phones Item 4"],
+      "description": "Specific commercial title of the product."
+    },
+    {
+      "column_name": "Sales",
+      "data_type": "float64",
+      "nullable": true,
+      "missing_percentage": 4.0,
+      "range": { "min": 150.0, "max": 1800000.0 },
+      "description": "Total revenue generated in INR. Contains ~1% extreme numeric outliers."
+    },
+    {
+      "column_name": "Quantity",
+      "data_type": "int64",
+      "nullable": false,
+      "missing_percentage": 0.0,
+      "range": { "min": -10, "max": 10 },
+      "description": "Number of units ordered. Contains invalid negative values."
+    },
+    {
+      "column_name": "Discount",
+      "data_type": "float64",
+      "nullable": false,
+      "missing_percentage": 0.0,
+      "range": { "min": 0.0, "max": 0.3 },
+      "description": "Discount percentage applied (e.g., 0.15 = 15%)."
+    },
+    {
+      "column_name": "Profit",
+      "data_type": "float64",
+      "nullable": false,
+      "missing_percentage": 0.0,
+      "range": { "min": -250000.0, "max": 350000.0 },
+      "description": "Net profit generated in INR. Contains ~1% extreme negative/positive outliers."
+    }
+  ],
+  "standard_preprocessing_instructions": [
+    "1. Deduplication: Run df.drop_duplicates(inplace=True).",
+    "2. String Cleaning: Clean 'Category' using df['Category'] = df['Category'].astype(str).str.strip().str.title(). Replace 'Tech' with 'Technology' and 'Office_Supplies' with 'Office Supplies'.",
+    "3. Date Standardization: Convert 'Order_Date' using pd.to_datetime(df['Order_Date'], errors='coerce', format='mixed'). Drop or fill unparseable NaT values.",
+    "4. Absolute Quantities: Fix negative quantities using df['Quantity'] = df['Quantity'].abs().",
+    "5. Missing Imputation: Impute missing 'Sales' with category-wise median values.",
+    "6. Outliers: Clip extreme outliers in 'Sales' and 'Profit' above the 99th percentile or using IQR bounds."
+  ]
+}
